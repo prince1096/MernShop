@@ -14,6 +14,7 @@ const userSignUpController = async (req, res) => {
 
     const existingUser = await User.findOne({ email });
 
+    // remember to write return always otherwise error is coming bcz more then one json will be there
     if (existingUser) {
       return res.status(400).json({ message: "User Exists" });
     }
@@ -137,4 +138,8 @@ const userDetailsController = async (req, res) => {
   }
 };
 
-module.exports = { userSignUpController, userLogInController };
+module.exports = {
+  userSignUpController,
+  userLogInController,
+  userDetailsController,
+};
