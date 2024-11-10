@@ -9,6 +9,10 @@ const SummaryApi = {
     url: `${backendDomain}/api/v1/user/login`,
     method: "post",
   },
+  currentUser: {
+    url: `${backendDomain}/api/v1/user/user-details`,
+    method: "get",
+  },
 };
 
 export default SummaryApi;

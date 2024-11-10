@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import loginIcons from "../assest/assest/loginGif.gif";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
@@ -6,11 +6,16 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
+import Context from "../context";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+
+  const generalContext = useContext(Context);
+
+  // console.log("general", generalContext);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -35,6 +40,7 @@ const LoginPage = () => {
     if (response.data.success) {
       toast.success(response.data.message);
       navigate("/");
+      generalContext.fetchUserDetails();
     }
 
     if (response.data.error) {

@@ -129,6 +129,10 @@ const userLogInController = async (req, res) => {
 
 const userDetailsController = async (req, res) => {
   try {
+    console.log("user id", req.userId);
+
+    const user = await User.findById(req.userId);
+    console.log("user", user);
   } catch (error) {
     res.status(400).json({
       message: error.message || error,

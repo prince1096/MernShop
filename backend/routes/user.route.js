@@ -2,7 +2,9 @@ const express = require("express");
 const {
   userSignUpController,
   userLogInController,
+  userDetailsController,
 } = require("../controller/user.Controller");
+const authToken = require("../middleware/authToken");
 
 const router = express.Router();
 
@@ -16,5 +18,6 @@ router.get("/", (req, res) => {
 
 router.post("/signup", userSignUpController);
 router.post("/login", userLogInController);
+router.get("/user-details", authToken, userDetailsController);
 
 module.exports = router;
