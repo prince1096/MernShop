@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
@@ -12,6 +12,7 @@ import { setUserDetails } from "../store/userSlice";
 const Header = () => {
   const user = useSelector((state) => state?.user?.user);
   const dispatch = useDispatch();
+  const [adminDisplay, setAdminDisplay] = useState(false);
 
   const handleLogout = async () => {
     const responseData = await axios.get(SummaryApi.logout.url, {
@@ -53,17 +54,37 @@ const Header = () => {
           </div>
 
           <div className="flex justify-center items-center gap-2 md:gap-4">
-            <div className="text-lg md:text-xl lg:text-2xl cursor-pointer">
-              {user?.profilePic ? (
-                <img
-                  src={user?.profilePic}
-                  alt={user?.name}
-                  className="w-10 h-10 rounded-full"
-                />
-              ) : (
-                <FaRegCircleUser />
+            <div className="relative ">
+              <div
+                className="text-xl md:text-2xl lg:text-3xl cursor-pointer"
+                onClick={() => setAdminDisplay((prev) => !prev)}
+              >
+                {user?.profilePic ? (
+                  <img
+                    src={user?.profilePic}
+                    alt={user?.name}
+                    className="w-10 h-10 rounded-full"
+                  />
+                ) : (
+                  <FaRegCircleUser />
+                )}
+              </div>
+
+              {adminDisplay && (
+                <div className="absolute bg-white hidden md:block  top-5 md:top-10  -left-10 h-fit p-2 shadow-lg rounded ">
+                  <nav>
+                    <Link
+                      to={"/admin-panel"}
+                      className="whitespace-nowrap hover:bg-slate-100 p-2"
+                      onClick={() => setAdminDisplay((prev) => !prev)}
+                    >
+                      Admin Panel
+                    </Link>
+                  </nav>
+                </div>
               )}
             </div>
+
             <div className="text-lg md:text-xl lg:text-2xl relative">
               <span>
                 <FaShoppingCart />

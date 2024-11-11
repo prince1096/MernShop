@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
       minLength: 5,
     },
     profilePic: String,
+    role: String,
   },
   {
     timestamps: true,

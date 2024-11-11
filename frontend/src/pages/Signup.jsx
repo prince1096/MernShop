@@ -20,6 +20,9 @@ const Signup = () => {
     profilePic: "",
   });
 
+  // console.log(signUpData);
+  // i am getting a problem high mb pic is not uploaded
+
   const navigate = useNavigate();
 
   const handleOnChange = (e) => {
