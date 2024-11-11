@@ -17,9 +17,13 @@ router.get("/", (req, res) => {
 //   res.send("Signup Route");
 // });
 
+// user authentication
+
 router.post("/signup", userSignUpController);
 router.post("/login", userLogInController);
 router.get("/user-details", authToken, userDetailsController);
 router.get("/logout", userLogoutController);
+
+// admin panel
 
 module.exports = router;
