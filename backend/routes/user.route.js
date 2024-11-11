@@ -3,6 +3,7 @@ const {
   userSignUpController,
   userLogInController,
   userDetailsController,
+  userLogoutController,
 } = require("../controller/user.Controller");
 const authToken = require("../middleware/authToken");
 
@@ -19,5 +20,6 @@ router.get("/", (req, res) => {
 router.post("/signup", userSignUpController);
 router.post("/login", userLogInController);
 router.get("/user-details", authToken, userDetailsController);
+router.get("/logout", userLogoutController);
 
 module.exports = router;

@@ -3,10 +3,33 @@ import { IoIosSearch } from "react-icons/io";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import SummaryApi from "../common";
+import { toast } from "react-toastify";
+import { setUserDetails } from "../store/userSlice";
 
 const Header = () => {
   const user = useSelector((state) => state?.user?.user);
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    const responseData = await axios.get(SummaryApi.logout.url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    });
+
+    if (responseData.data.success) {
+      toast.success(responseData.data.message);
+      dispatch(setUserDetails(null));
+    }
+
+    if (responseData.data.error) {
+      toast.error(responseData.data.error);
+    }
+  };
 
   return (
     <header className="h-20 md:h-16 shadow-md bg-white">
@@ -51,12 +74,23 @@ const Header = () => {
             </div>
 
             <div className="ml-2">
-              <Link
-                to="/login"
-                className="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-white bg-black md:font-medium hover:bg-slate-500 hover:font-semibold hover:text-lg"
-              >
-                Login
-              </Link>
+              {user?._id ? (
+                <button
+                  onClick={handleLogout}
+                  className="
+                px-2 md:px-3 py-0.5 md:py-1 rounded-full text-white bg-black md:font-medium hover:bg-slate-500 hover:font-semibold hover:text-lg
+                "
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  className="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-white bg-black md:font-medium hover:bg-slate-500 hover:font-semibold hover:text-lg"
+                >
+                  Login
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -64,7 +64,7 @@ const userLogInController = async (req, res) => {
   try {
     const loginDetails = req.body;
 
-    console.log(loginDetails.email, loginDetails.password);
+    // console.log(loginDetails.email, loginDetails.password);
 
     const { email, password } = loginDetails;
 
@@ -87,7 +87,7 @@ const userLogInController = async (req, res) => {
       user.password
     );
 
-    console.log("checkPassword", checkPassword);
+    // console.log("checkPassword", checkPassword);
 
     if (checkPassword) {
       const tokenData = {
@@ -129,10 +129,10 @@ const userLogInController = async (req, res) => {
 
 const userDetailsController = async (req, res) => {
   try {
-    console.log("user id", req.userId);
+    // console.log("user id", req.userId);
 
     const user = await User.findById(req.userId);
-    console.log("user", user);
+    // console.log("user", user);
 
     res.status(200).json({
       data: user,
@@ -149,8 +149,30 @@ const userDetailsController = async (req, res) => {
   }
 };
 
+const userLogoutController = async (req, res) => {
+  // we have to clear cookies from browser
+
+  try {
+    res.clearCookie("token");
+
+    res.status(200).json({
+      message: "Logged out successfully",
+      error: false,
+      success: true,
+      data: [],
+    });
+  } catch (error) {
+    res.json({
+      message: err.message || error,
+      error: true,
+      success: false,
+    });
+  }
+};
+
 module.exports = {
   userSignUpController,
   userLogInController,
   userDetailsController,
+  userLogoutController,
 };
