@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SummaryApi from "../common";
-import "../App.css";
 import { toast } from "react-toastify";
+import "../App.css";
+import moment from "moment/moment";
+import { MdModeEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-import moment from "moment";
-import { Link } from "react-router-dom";
 
 const AllUsers = () => {
   const [allUser, setAllUsers] = useState([]);
@@ -18,23 +18,23 @@ const AllUsers = () => {
       withCredentials: true,
     });
 
-    if (responseData.data.success) {
+    // console.log(responseData.data);
+
+    if (responseData?.data?.success) {
       setAllUsers(responseData.data.data);
     }
 
     if (responseData.data.error) {
       toast.error(responseData.data.message);
     }
-
-    // console.log(responseData.data);
   };
 
   useEffect(() => {
     fetchAllUsers();
   }, []);
   return (
-    <div>
-      <table className=" w-full  userTable">
+    <div className="bg-white pb-4">
+      <table className="w-full bg-white userTable">
         <thead>
           <tr>
             <th>Sr.</th>
@@ -49,16 +49,18 @@ const AllUsers = () => {
           {allUser?.map((element, index) => {
             return (
               <tr>
-                <td>{index + 1}</td>
-                <td>{element?.name}</td>
+                <td className="tdcenter">{index + 1}</td>
+                <td className="tdcenter">{element?.name}</td>
                 <td>{element?.email}</td>
                 <td>{element?.role}</td>
                 <td>{moment(element?.createdAt).format("ll")}</td>
                 <td>
-                  <Link></Link>
-                  <Link>
+                  <button className="bg-green-200 p-2 m-1 rounded-full cursor-pointer hover:bg-green-500 hover:text-white">
+                    <MdModeEdit />
+                  </button>
+                  <button className="bg-green-200 p-2 m-1 rounded-full cursor-pointer hover:bg-green-500 hover:text-white">
                     <MdDelete />
-                  </Link>
+                  </button>
                 </td>
               </tr>
             );
