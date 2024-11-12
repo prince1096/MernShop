@@ -33,7 +33,7 @@ const Header = () => {
   };
 
   return (
-    <header className="h-20 md:h-16 shadow-md bg-white">
+    <header className="h-22 md:h-16 shadow-md bg-white">
       {/* Main Header */}
       <div className="p-2 md:p-4 ">
         {/* Top part consist logo, search and user profile */}
