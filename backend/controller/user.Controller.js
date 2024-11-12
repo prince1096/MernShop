@@ -112,7 +112,7 @@ const userLogInController = async (req, res) => {
         status: 200,
       });
     } else {
-      res.status(403).jsn({
+      res.status(403).json({
         message: "Check your password",
         success: false,
         error: true,
