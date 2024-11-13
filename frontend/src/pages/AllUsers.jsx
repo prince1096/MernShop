@@ -6,6 +6,7 @@ import "../App.css";
 import moment from "moment/moment";
 import { MdModeEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const AllUsers = () => {
   const [allUser, setAllUsers] = useState([]);
@@ -55,12 +56,25 @@ const AllUsers = () => {
                 <td>{element?.role}</td>
                 <td>{moment(element?.createdAt).format("ll")}</td>
                 <td>
-                  <button className="bg-green-200 p-2 m-1 rounded-full cursor-pointer hover:bg-green-500 hover:text-white">
-                    <MdModeEdit />
-                  </button>
-                  <button className="bg-green-200 p-2 m-1 rounded-full cursor-pointer hover:bg-green-500 hover:text-white">
-                    <MdDelete />
-                  </button>
+                  {element?.role === "GENERAL" && (
+                    <div>
+                      <Link
+                        to="/admin-panel/edit"
+                        role="button"
+                        className="bg-green-200 p-2 m-1 rounded-full cursor-pointer hover:bg-green-500 hover:text-white inline-block text-center no-underline"
+                      >
+                        <MdModeEdit />
+                      </Link>
+
+                      <Link
+                        to="/delete"
+                        role="button"
+                        className="bg-green-200 p-2 m-1 rounded-full cursor-pointer hover:bg-green-500 hover:text-white inline-block text-center no-underline"
+                      >
+                        <MdDelete />
+                      </Link>
+                    </div>
+                  )}
                 </td>
               </tr>
             );

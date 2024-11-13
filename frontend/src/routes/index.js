@@ -6,6 +6,7 @@ import Signup from "../pages/Signup";
 import AdminPanel from "../pages/AdminPanel";
 import AllUsers from "../pages/AllUsers";
 import Products from "../pages/Products";
+import EditUser from "../pages/EditUser";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
           {
             path: "products",
             element: <Products />,
+          },
+          {
+            path: "edit",
+            element: <EditUser />,
           },
         ],
       },
