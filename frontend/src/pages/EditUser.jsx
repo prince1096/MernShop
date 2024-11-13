@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import loginIcons from "../assest/assest/loginGif.gif";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaRegImage } from "react-icons/fa6";
 import imageTobase64 from "../helpers/imageTobase64";
 import axios from "axios";
@@ -10,6 +10,36 @@ import SummaryApi from "../common";
 import { toast } from "react-toastify";
 
 const EditUser = () => {
+  const { userId } = useParams();
+  console.log("userId", userId);
+  const [userData, setUserData] = useState({});
+
+  const fetchUserData = async () => {
+    try {
+      const responseData = await axios.get(
+        `http://localhost:8080/api/v1/admin/${userId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+
+      if (responseData.data.success) {
+        setUserData(responseData.data.data);
+      }
+    } catch (error) {
+      console.log("Error Fetching User Data", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  console.log("userData", userData);
+
   return (
     <>
       <section id="login" className="mt-3 md:mt-5">
@@ -18,8 +48,8 @@ const EditUser = () => {
             <div className="w-24 h-24 mx-auto my-5 relative cursor-pointer">
               <div>
                 <img
-                  // src={signUpData.profilePic || loginIcons}
-                  src={loginIcons}
+                  src={userData?.profilePic || loginIcons}
+                  // src={loginIcons}
                   alt="login icons"
                   className="w-full h-full rounded-full"
                 />
@@ -52,7 +82,7 @@ const EditUser = () => {
                     className="w-full h-full outline-none p-0.5 bg-slate-100"
                     // onChange={handleOnChange}
                     name="name"
-                    // value={signUpData.name}
+                    value={userData.name}
                   />
                 </div>
               </div>
@@ -69,7 +99,7 @@ const EditUser = () => {
                     className="w-full h-full outline-none p-0.5 bg-slate-100"
                     // onChange={handleOnChange}
                     name="email"
-                    // value={signUpData.email}
+                    value={userData.email}
                   />
                 </div>
               </div>
@@ -84,7 +114,7 @@ const EditUser = () => {
                     className="w-full h-full outline-none p-0.5 bg-slate-100"
                     name="confirmPassword"
                     // onChange={handleOnChange}
-                    // value={signUpData.confirmPassword}
+                    value={userData.role}
                   />
                   <div
                     className="cursor-pointer"
@@ -103,7 +133,7 @@ const EditUser = () => {
                 </button>
 
                 <Link
-                  to="/login"
+                  to="/admin-panel/all-users"
                   // className="hover:underline hover:font-semibold01296"
                   className="bg-red-400 hover:bg-red-600 mx-auto block text-white rounded-full px-2 py-1  w-full max-w-[120px] mt-4 hover:scale-110 transition-all font-semibold text-center"
                 >

@@ -2,6 +2,7 @@ const User = require("../models/user.Model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+// signup Controller
 const userSignUpController = async (req, res) => {
   try {
     const signUpData = req.body;
@@ -59,6 +60,7 @@ const userSignUpController = async (req, res) => {
   }
 };
 
+// Login Controller
 const userLogInController = async (req, res) => {
   // console.log(req.body);
   try {
@@ -127,6 +129,7 @@ const userLogInController = async (req, res) => {
   }
 };
 
+// User Details
 const userDetailsController = async (req, res) => {
   try {
     // console.log("user id", req.userId);
@@ -149,6 +152,7 @@ const userDetailsController = async (req, res) => {
   }
 };
 
+// Logout Controller
 const userLogoutController = async (req, res) => {
   // we have to clear cookies from browser
 

@@ -1,5 +1,8 @@
 const express = require("express");
-const { allUsersController } = require("../controller/admin.controller");
+const {
+  allUsersController,
+  singleUserController,
+} = require("../controller/admin.controller");
 const authToken = require("../middleware/authToken");
 
 const router = express.Router();
@@ -9,5 +12,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/all-users", authToken, allUsersController);
+router.get("/:userId", singleUserController);
 
 module.exports = router;

@@ -22,6 +22,10 @@ const SummaryApi = {
     url: `${backendDomain}/api/v1/admin/all-users`,
     method: "get",
   },
+
+  // singleUser: {
+  //   url: `${backendDomain}/api/v1/admin/${userId}`,
+  // },
 };
 
 export default SummaryApi;
