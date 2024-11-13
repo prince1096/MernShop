@@ -49,7 +49,7 @@ const AllUsers = () => {
         <tbody>
           {allUser?.map((element, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td className="tdcenter">{index + 1}</td>
                 <td className="tdcenter">{element?.name}</td>
                 <td>{element?.email}</td>
@@ -59,7 +59,8 @@ const AllUsers = () => {
                   {element?.role === "GENERAL" && (
                     <div>
                       <Link
-                        to="/admin-panel/edit"
+                        // to="/admin-panel/edit"
+                        to={`/admin-panel/edit/${element?._id}`}
                         role="button"
                         className="bg-green-200 p-2 m-1 rounded-full cursor-pointer hover:bg-green-500 hover:text-white inline-block text-center no-underline"
                       >
