@@ -2,6 +2,7 @@ const express = require("express");
 const {
   allUsersController,
   singleUserController,
+  updateUserController,
 } = require("../controller/admin.controller");
 const authToken = require("../middleware/authToken");
 
@@ -13,5 +14,6 @@ router.get("/", (req, res) => {
 
 router.get("/all-users", authToken, allUsersController);
 router.get("/:userId", singleUserController);
+router.put("/:userId", updateUserController);
 
 module.exports = router;

@@ -11,8 +11,9 @@ import { toast } from "react-toastify";
 
 const EditUser = () => {
   const { userId } = useParams();
-  console.log("userId", userId);
+  // console.log("userId", userId);
   const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
 
   const fetchUserData = async () => {
     try {
@@ -64,6 +65,7 @@ const EditUser = () => {
       );
       if (response.data.success) {
         toast.success(response.data.message);
+        navigate("/admin-panel/all-users");
       }
       if (response.data.error) {
         toast.error(response.data.message);
@@ -77,7 +79,7 @@ const EditUser = () => {
     fetchUserData();
   }, []);
 
-  console.log("userData", userData);
+  // console.log("userData", userData);
 
   return (
     <>

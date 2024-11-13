@@ -89,4 +89,5 @@ const updateUserController = async (req, res) => {
 module.exports = {
   allUsersController,
   singleUserController,
+  updateUserController,
 };
