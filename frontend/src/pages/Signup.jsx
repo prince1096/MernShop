@@ -72,7 +72,7 @@ const Signup = () => {
     e.preventDefault();
     const file = e.target.files[0];
     const imagePic = await imageTobase64(file);
-    console.log(imagePic, "imagePic");
+    // console.log(imagePic, "imagePic");
 
     setSignUpData((prev) => {
       return { ...prev, profilePic: imagePic };

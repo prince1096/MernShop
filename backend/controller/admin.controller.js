@@ -58,15 +58,25 @@ const singleUserController = async (req, res) => {
 const updateUserController = async (req, res) => {
   try {
     const userId = req.params.userId;
-    const userExist = await User.findOne({ userId });
+    const userBody = req.body;
 
-    if (!userExist) {
+    const updatedUser = await User.findByIdAndUpdate(userId, userBody, {
+      new: true,
+    });
+    if (!updatedUser) {
       return res.status(400).json({
-        message: "User didn't exist",
-        error: true,
+        message: "User not Found",
         success: false,
+        error: true,
       });
     }
+
+    res.status(200).json({
+      data: updatedUser,
+      message: "User updated Successfully",
+      success: true,
+      error: false,
+    });
   } catch (error) {
     res.status(400).json({
       message: error.message || error,

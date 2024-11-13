@@ -34,6 +34,45 @@ const EditUser = () => {
     }
   };
 
+  const handleUploadPic = async (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    const imagePic = await imageTobase64(file);
+    // console.log(imagePic, "imagePic");
+
+    setUserData((prev) => {
+      return { ...prev, profilePic: imagePic };
+    });
+  };
+
+  // const handleOnChange = async () => {};
+
+  const handleOnChange = async (e) => {
+    const { name, value } = e.target;
+
+    setUserData((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(
+        `http://localhost:8080/api/v1/admin/${userId}`,
+        userData
+      );
+      if (response.data.success) {
+        toast.success(response.data.message);
+      }
+      if (response.data.error) {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log("Error in Updating details", error);
+    }
+  };
+
   useEffect(() => {
     fetchUserData();
   }, []);
@@ -49,7 +88,6 @@ const EditUser = () => {
               <div>
                 <img
                   src={userData?.profilePic || loginIcons}
-                  // src={loginIcons}
                   alt="login icons"
                   className="w-full h-full rounded-full"
                 />
@@ -63,13 +101,13 @@ const EditUser = () => {
                     type="file"
                     id="input"
                     className="hidden"
-                    // onChange={handleUploadPic}
+                    onChange={handleUploadPic}
                   />
                 </label>
               </form>
             </div>
 
-            <form onSubmit={"eer"}>
+            <form onSubmit={handleOnSubmit}>
               <div className="mt-4">
                 <label htmlFor="name" className="my-2">
                   Name :
@@ -80,7 +118,7 @@ const EditUser = () => {
                     placeholder="enter name"
                     id="name"
                     className="w-full h-full outline-none p-0.5 bg-slate-100"
-                    // onChange={handleOnChange}
+                    onChange={handleOnChange}
                     name="name"
                     value={userData.name}
                   />
@@ -107,23 +145,19 @@ const EditUser = () => {
               <div className="mt-2">
                 <label htmlFor="confirmPassword">Role : </label>
                 <div className="bg-slate-100 p-2 flex items-center gap-1">
-                  <input
-                    // type={showConfirmPassword ? "text" : "password"}
-                    placeholder="enter confirm password"
-                    id="confirmPassword"
+                  <select
+                    id="role"
                     className="w-full h-full outline-none p-0.5 bg-slate-100"
-                    name="confirmPassword"
-                    // onChange={handleOnChange}
-                    value={userData.role}
-                  />
-                  <div
-                    className="cursor-pointer"
-                    // onClick={() => setShowConfirmPassword((prev) => !prev)}
+                    name="role"
+                    value={userData.role || "GENERAL"}
+                    // onChange={(e) =>
+                    //   setUserData({ ...userData, role: e.target.value })
+                    // }
+                    onChange={handleOnChange}
                   >
-                    <span>
-                      {/* {showConfirmPassword ? <FaEyeSlash /> : <FaEye />} */}
-                    </span>
-                  </div>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="GENERAL">GENERAL</option>
+                  </select>
                 </div>
               </div>
 
