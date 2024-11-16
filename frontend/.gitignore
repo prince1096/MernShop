@@ -11,6 +11,13 @@
 # production
 /build
 
+
+# Environment files
+.env
+.env.*
+
+
+
 # files
 assest/
 
