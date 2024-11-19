@@ -4,6 +4,7 @@ import productCategory from "../helpers/productCategory";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import addImage from "../helpers/addImage";
 import DisplayImage from "./DisplayImage";
+import { MdDelete } from "react-icons/md";
 
 const AddProduct = ({ onClose }) => {
   const [productData, setProductData] = useState({
@@ -13,12 +14,21 @@ const AddProduct = ({ onClose }) => {
     productImage: [],
     description: "",
     price: "",
-    selling: "",
+    sellingPrice: "",
   });
 
   const [activeImage, setActiveImage] = useState("");
   const [fullScreenImage, setFullScreenImage] = useState(false);
-  const changeHandler = () => {};
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+
+    setProductData((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
 
   const addImageHandler = async (e) => {
     const file = e.target.files[0];
@@ -30,6 +40,23 @@ const AddProduct = ({ onClose }) => {
       };
     });
     // console.log("UploadImage", uploadImageOnCloudinary.data.url);
+  };
+
+  const deleteImageHandler = async (index) => {
+    const filteredImage = productData?.productImage?.filter(
+      (ele, i) => i !== index
+    );
+
+    setProductData((prev) => {
+      return {
+        ...prev,
+        productImage: [...filteredImage],
+      };
+    });
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -51,7 +78,10 @@ const AddProduct = ({ onClose }) => {
           </div>
         </div>
 
-        <form className="grid p-4 gap-2 overflow-y-scroll h-full pb-5 ">
+        <form
+          className="grid p-4 gap-2 overflow-y-scroll h-full pb-5 "
+          onSubmit={submitHandler}
+        >
           <label htmlFor="productName" className="mt-1 ml-1">
             Product Name :{" "}
           </label>
@@ -66,37 +96,42 @@ const AddProduct = ({ onClose }) => {
           />
 
           <div className="flex justify-between items-center">
-            <label htmlFor="brandName" className="mt-1 ml-1">
-              Brand Name :{" "}
-            </label>
-            <input
-              type="text"
-              id="brandName"
-              name="brandName"
-              placeholder="enter brand name"
-              value={productData.brandName}
-              onChange={changeHandler}
-              className="p-2 bg-slate-100 border rounded m-1"
-            />
+            <div>
+              <label htmlFor="brandName" className="mt-1 ml-1">
+                Brand Name :{" "}
+              </label>
+              <input
+                type="text"
+                id="brandName"
+                name="brandName"
+                placeholder="enter brand name"
+                value={productData.brandName}
+                onChange={changeHandler}
+                className="p-2 bg-slate-100 border rounded m-1"
+              />
+            </div>
 
-            <label htmlFor="category" className="mt-1 ml-1">
-              Category :
-            </label>
-            <select
-              name="category"
-              id="category"
-              value={productData.category}
-              className="p-2 bg-slate-100 border rounded m-1"
-              onChange={changeHandler}
-            >
-              {productCategory?.map((el, index) => {
-                return (
-                  <option value={el.value} key={el.value + index}>
-                    {el.label}
-                  </option>
-                );
-              })}
-            </select>
+            <div>
+              <label htmlFor="category" className="mt-1 ml-1">
+                Category :
+              </label>
+              <select
+                name="category"
+                id="category"
+                value={productData.category}
+                className="p-2 bg-slate-100 border rounded m-1"
+                onChange={changeHandler}
+              >
+                <option value="">Select Category</option>
+                {productCategory?.map((el, index) => {
+                  return (
+                    <option value={el.value} key={el.value + index}>
+                      {el.label}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
           </div>
 
           <label htmlFor="productImage" className="mt-1 ml-1">
@@ -122,18 +157,26 @@ const AddProduct = ({ onClose }) => {
               <div className="flex items-center gap-2">
                 {productData?.productImage?.map((ele, index) => {
                   return (
-                    <img
-                      src={ele}
-                      alt="product"
-                      width={100}
-                      height={100}
-                      className="bg-slate-100 border cursor-pointer"
-                      key={index}
-                      onClick={() => {
-                        setFullScreenImage(true);
-                        setActiveImage(ele);
-                      }}
-                    />
+                    <div className="relative group">
+                      <img
+                        src={ele}
+                        alt="product"
+                        width={100}
+                        height={100}
+                        className="bg-slate-100 border cursor-pointer"
+                        key={index}
+                        onClick={() => {
+                          setFullScreenImage(true);
+                          setActiveImage(ele);
+                        }}
+                      />
+                      <div
+                        className="absolute bottom-0 right-0 p-1 text-white bg-black rounded-full cursor-pointer hidden group-hover:block"
+                        onClick={() => deleteImageHandler(index)}
+                      >
+                        <MdDelete />
+                      </div>
+                    </div>
                   );
                 })}
               </div>
@@ -142,30 +185,50 @@ const AddProduct = ({ onClose }) => {
             )}
           </div>
 
+          <div className="flex justify-between items-center">
+            <div>
+              <label htmlFor="price" className="mt-1 ml-1">
+                Price :{" "}
+              </label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                placeholder="enter price"
+                value={productData.price}
+                onChange={changeHandler}
+                className="p-2 bg-slate-100 border rounded m-1"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="sellingPrice" className="mt-1 ml-1">
+                Selling Price :{" "}
+              </label>
+              <input
+                type="number"
+                id="sellingPrice"
+                name="sellingPrice"
+                placeholder="enter selling price"
+                value={productData.sellingPricerice}
+                onChange={changeHandler}
+                className="p-2 bg-slate-100 border rounded m-1"
+              />
+            </div>
+          </div>
+
           <label htmlFor="category" className="mt-1 ml-1">
             Description :{" "}
           </label>
-          <input
+          <textarea
+            rows={3}
             type="text"
             id="description"
             name="description"
             placeholder="enter description"
             value={productData.description}
             onChange={changeHandler}
-            className="p-2 bg-slate-100 border rounded m-1"
-          />
-
-          <label htmlFor="productName" className="mt-1 ml-1">
-            Product Name :{" "}
-          </label>
-          <input
-            type="text"
-            id="productName"
-            name="productName"
-            placeholder="enter product name"
-            value={productData.productName}
-            onChange={changeHandler}
-            className="p-2 bg-slate-100 border rounded m-1"
+            className=" h-28 p-2 bg-slate-100 border rounded m-1 resize-none"
           />
 
           <button className="px-2 py-2 font-semibold bg-gray-500 text-white mb-10 hover:bg-gray-700">

@@ -1,5 +1,6 @@
 import React from "react";
 import { CgClose } from "react-icons/cg";
+// import { MdDelete } from "react-icons/md";
 
 const DisplayImage = ({ imageUrl, onClose }) => {
   return (
