@@ -7,8 +7,15 @@ const addImage = async (image) => {
   formData.append("file", image);
   formData.append("upload_preset", "mern_shop");
 
-  const responseData = await axios.post(url);
-  console.log(responseData);
+  const responseData = await axios.post(url, formData);
+  // const responseData = await fetch(url, {
+  //   method: "post",
+  //   body: formData,
+  // });
+
+  // console.log(responseData);
+  return responseData;
+  // return responseData.json();
 };
 
 export default addImage;

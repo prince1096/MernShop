@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import productCategory from "../helpers/productCategory";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import addImage from "../helpers/addImage";
+import DisplayImage from "./DisplayImage";
 
 const AddProduct = ({ onClose }) => {
   const [productData, setProductData] = useState({
@@ -14,12 +16,20 @@ const AddProduct = ({ onClose }) => {
     selling: "",
   });
 
-  const [addImage, setAddImage] = useState("");
-
+  const [activeImage, setActiveImage] = useState("");
+  const [fullScreenImage, setFullScreenImage] = useState(false);
   const changeHandler = () => {};
-  const addImageHandler = (e) => {
+
+  const addImageHandler = async (e) => {
     const file = e.target.files[0];
-    setAddImage(file.name);
+    const uploadImageOnCloudinary = await addImage(file);
+    setProductData((prev) => {
+      return {
+        ...prev,
+        productImage: [...prev.productImage, uploadImageOnCloudinary.data.url],
+      };
+    });
+    // console.log("UploadImage", uploadImageOnCloudinary.data.url);
   };
 
   return (
@@ -77,6 +87,7 @@ const AddProduct = ({ onClose }) => {
               id="category"
               value={productData.category}
               className="p-2 bg-slate-100 border rounded m-1"
+              onChange={changeHandler}
             >
               {productCategory?.map((el, index) => {
                 return (
@@ -107,13 +118,28 @@ const AddProduct = ({ onClose }) => {
           </label>
 
           <div>
-            <img
-              src=""
-              alt=""
-              width={100}
-              height={100}
-              className="bg-slate-100 border"
-            />
+            {productData?.productImage.length !== 0 ? (
+              <div className="flex items-center gap-2">
+                {productData?.productImage?.map((ele, index) => {
+                  return (
+                    <img
+                      src={ele}
+                      alt="product"
+                      width={100}
+                      height={100}
+                      className="bg-slate-100 border cursor-pointer"
+                      key={index}
+                      onClick={() => {
+                        setFullScreenImage(true);
+                        setActiveImage(ele);
+                      }}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              <p>No Product Image Upload Some</p>
+            )}
           </div>
 
           <label htmlFor="category" className="mt-1 ml-1">
@@ -141,8 +167,21 @@ const AddProduct = ({ onClose }) => {
             onChange={changeHandler}
             className="p-2 bg-slate-100 border rounded m-1"
           />
+
+          <button className="px-2 py-2 font-semibold bg-gray-500 text-white mb-10 hover:bg-gray-700">
+            Add Product
+          </button>
         </form>
       </div>
+
+      {/* Display Image full Screen */}
+
+      {fullScreenImage && (
+        <DisplayImage
+          imageUrl={activeImage}
+          onClose={() => setFullScreenImage(false)}
+        />
+      )}
     </div>
   );
 };
