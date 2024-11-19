@@ -23,9 +23,9 @@ const SummaryApi = {
     method: "get",
   },
 
-  // singleUser: {
-  //   url: `${backendDomain}/api/v1/admin/${userId}`,
-  // },
+  uploadProduct: {
+    url: `${backendDomain}/api/v1/admin/upload-product`,
+  },
 };
 
 export default SummaryApi;

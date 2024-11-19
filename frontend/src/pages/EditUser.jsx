@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import loginIcons from "../assest/assest/loginGif.gif";
-import { FaEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa";
+// import { FaEye } from "react-icons/fa";
+// import { FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaRegImage } from "react-icons/fa6";
 import imageTobase64 from "../helpers/imageTobase64";
 import axios from "axios";
-import SummaryApi from "../common";
+// import SummaryApi from "../common";
 import { toast } from "react-toastify";
 
 const EditUser = () => {

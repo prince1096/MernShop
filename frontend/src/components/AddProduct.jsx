@@ -5,6 +5,9 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import addImage from "../helpers/addImage";
 import DisplayImage from "./DisplayImage";
 import { MdDelete } from "react-icons/md";
+import axios from "axios";
+import SummaryApi from "../common";
+import { toast } from "react-toastify";
 
 const AddProduct = ({ onClose }) => {
   const [productData, setProductData] = useState({
@@ -55,8 +58,28 @@ const AddProduct = ({ onClose }) => {
     });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
+    const responseData = await axios.post(
+      SummaryApi.uploadProduct.url,
+      productData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+
+    console.log(responseData.data);
+
+    if (responseData.data.success) {
+      toast.success(responseData.data.message);
+      onClose();
+    }
+    if (responseData.data.error) {
+      toast.error(responseData.data.error);
+    }
   };
 
   return (
@@ -93,6 +116,7 @@ const AddProduct = ({ onClose }) => {
             value={productData.productName}
             onChange={changeHandler}
             className="p-2 bg-slate-100 border rounded m-1"
+            required
           />
 
           <div className="flex justify-between items-center">
@@ -108,6 +132,7 @@ const AddProduct = ({ onClose }) => {
                 value={productData.brandName}
                 onChange={changeHandler}
                 className="p-2 bg-slate-100 border rounded m-1"
+                required
               />
             </div>
 
@@ -121,6 +146,7 @@ const AddProduct = ({ onClose }) => {
                 value={productData.category}
                 className="p-2 bg-slate-100 border rounded m-1"
                 onChange={changeHandler}
+                required
               >
                 <option value="">Select Category</option>
                 {productCategory?.map((el, index) => {
@@ -147,6 +173,7 @@ const AddProduct = ({ onClose }) => {
                   id="uploadImageInput"
                   className="hidden"
                   onChange={addImageHandler}
+                  required
                 />
               </div>
             </div>
@@ -198,6 +225,7 @@ const AddProduct = ({ onClose }) => {
                 value={productData.price}
                 onChange={changeHandler}
                 className="p-2 bg-slate-100 border rounded m-1"
+                required
               />
             </div>
 
@@ -213,6 +241,7 @@ const AddProduct = ({ onClose }) => {
                 value={productData.sellingPricerice}
                 onChange={changeHandler}
                 className="p-2 bg-slate-100 border rounded m-1"
+                required
               />
             </div>
           </div>
@@ -229,6 +258,7 @@ const AddProduct = ({ onClose }) => {
             value={productData.description}
             onChange={changeHandler}
             className=" h-28 p-2 bg-slate-100 border rounded m-1 resize-none"
+            required
           />
 
           <button className="px-2 py-2 font-semibold bg-gray-500 text-white mb-10 hover:bg-gray-700">
