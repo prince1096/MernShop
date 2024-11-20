@@ -127,7 +127,7 @@ const uploadProductController = async (req, res) => {
 
 const getAllProductController = async (req, res) => {
   try {
-    const allProduct = await Product.find({});
+    const allProduct = await Product.find({}).sort({ createdAt: -1 });
 
     res.json({
       message: "All Product",

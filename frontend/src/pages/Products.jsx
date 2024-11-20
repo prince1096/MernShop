@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddProduct from "../components/AddProduct";
+import SummaryApi from "../common";
+import axios from "axios";
 
 const Products = () => {
   const [openAddProduct, setOpenAddProduct] = useState(false);
+  const [allProduct, setAllProduct] = useState([]);
+
+  const fetchAllProduct = async () => {
+    const responseData = await axios.get(SummaryApi.allProduct.url);
+    setAllProduct(responseData?.data?.data || []);
+  };
+
+  useEffect(() => {
+    fetchAllProduct();
+  }, []);
 
   return (
     <div>
@@ -15,6 +27,8 @@ const Products = () => {
           Add Product
         </button>
       </div>
+
+      <div>{/* {allProduct?.map} */}</div>
 
       {/* Upload product component */}
       {openAddProduct && (
