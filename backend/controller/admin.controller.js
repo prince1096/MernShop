@@ -123,9 +123,31 @@ const uploadProductController = async (req, res) => {
   }
 };
 
+// Get Product
+
+const getAllProductController = async (req, res) => {
+  try {
+    const allProduct = await Product.find({});
+
+    res.json({
+      message: "All Product",
+      success: true,
+      error: false,
+      data: allProduct,
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: error.message || error,
+      error: true,
+      success: false,
+    });
+  }
+};
+
 module.exports = {
   allUsersController,
   singleUserController,
   updateUserController,
   uploadProductController,
+  getAllProductController,
 };
