@@ -8,8 +8,22 @@ const Products = () => {
   const [allProduct, setAllProduct] = useState([]);
 
   const fetchAllProduct = async () => {
-    const responseData = await axios.get(SummaryApi.allProduct.url);
+    console.log("Hello");
+    const responseData = await axios.get(
+      "http://localhost:8080/api/v1/admin/get-product",
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+
+    // const responseData = await fetch(SummaryApi.allProduct.url);
+    // const allData = await responseData.json();
     setAllProduct(responseData?.data?.data || []);
+    console.log(responseData, "responseData");
+    // console.log(allData, "responseData");
   };
 
   useEffect(() => {
@@ -28,7 +42,15 @@ const Products = () => {
         </button>
       </div>
 
-      <div>{/* {allProduct?.map} */}</div>
+      <div>
+        {allProduct?.map((product, index) => {
+          return (
+            <div>
+              <img src={product[0]} alt="productImage" width={100} />
+            </div>
+          );
+        })}
+      </div>
 
       {/* Upload product component */}
       {openAddProduct && (
