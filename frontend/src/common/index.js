@@ -29,7 +29,7 @@ const SummaryApi = {
   },
 
   allProduct: {
-    url: `${backendDomain}/api/v1/admin/get-all-product`,
+    url: `${backendDomain}/api/v1/admin/get-product`,
     method: "get",
   },
 };

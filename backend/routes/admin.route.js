@@ -4,7 +4,8 @@ const {
   singleUserController,
   updateUserController,
   uploadProductController,
-  getAllProductController,
+  getProductController,
+  checkController,
 } = require("../controller/admin.controller");
 const authToken = require("../middleware/authToken");
 
@@ -15,10 +16,11 @@ router.get("/", (req, res) => {
 });
 
 router.get("/all-users", authToken, allUsersController);
-router.get("/:userId", singleUserController);
+router.get("/single-user/:userId", singleUserController);
 router.put("/:userId", authToken, updateUserController);
 
 // upload Product
 router.post("/upload-product", uploadProductController);
+router.get("/get-product", getProductController);
 
 module.exports = router;

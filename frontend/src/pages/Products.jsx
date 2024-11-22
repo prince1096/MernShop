@@ -7,28 +7,25 @@ const Products = () => {
   const [openAddProduct, setOpenAddProduct] = useState(false);
   const [allProduct, setAllProduct] = useState([]);
 
-  // const fetchAllProduct = async () => {
-  //   console.log("Hello");
-  //   const responseData = await axios.get(
-  //     "http://localhost:8080/api/v1/admin/get-product",
-  //     {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       withCredentials: true,
-  //     }
-  //   );
+  const fetchAllProduct = async () => {
+    // console.log("Hello");
+    const responseData = await axios.get(SummaryApi.allProduct.url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    });
 
-  //   // const responseData = await fetch(SummaryApi.allProduct.url);
-  //   // const allData = await responseData.json();
-  //   setAllProduct(responseData?.data?.data || []);
-  //   console.log(responseData, "responseData");
-  //   // console.log(allData, "responseData");
-  // };
+    // const responseData = await fetch(SummaryApi.allProduct.url);
+    // const allData = await responseData.json();
+    setAllProduct(responseData?.data?.data || []);
+    console.log(responseData.data, "responseData");
+    // console.log(allData, "responseData");
+  };
 
-  // useEffect(() => {
-  //   fetchAllProduct();
-  // }, []);
+  useEffect(() => {
+    fetchAllProduct();
+  }, []);
 
   return (
     <div>
@@ -46,7 +43,11 @@ const Products = () => {
         {allProduct?.map((product, index) => {
           return (
             <div>
-              <img src={product[0]} alt="productImage" width={100} />
+              <img
+                src={product.productImage[0]}
+                alt="productImage"
+                width={100}
+              />
             </div>
           );
         })}

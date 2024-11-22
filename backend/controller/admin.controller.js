@@ -147,10 +147,29 @@ const uploadProductController = async (req, res) => {
 //   }
 // };
 
+const getProductController = async (req, res) => {
+  try {
+    const allProduct = await Product.find({}).sort({ createdAt: -1 });
+
+    res.status(200).json({
+      message: "all Product",
+      success: true,
+      error: false,
+      data: allProduct,
+    });
+  } catch (error) {
+    res.status(400).json({
+      error: error.message || error,
+      error: true,
+      success: true,
+    });
+  }
+};
+
 module.exports = {
   allUsersController,
   singleUserController,
   updateUserController,
   uploadProductController,
-  // getAllProductController,
+  getProductController,
 };

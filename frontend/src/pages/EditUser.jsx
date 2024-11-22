@@ -18,7 +18,7 @@ const EditUser = () => {
   const fetchUserData = async () => {
     try {
       const responseData = await axios.get(
-        `http://localhost:8080/api/v1/admin/${userId}`,
+        `http://localhost:8080/api/v1/admin/single-user/${userId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const EditUser = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/v1/admin/${userId}`,
+        `http://localhost:8080/api/v1/admin/single-user/${userId}`,
         userData
       );
       if (response.data.success) {
