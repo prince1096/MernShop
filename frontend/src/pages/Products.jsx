@@ -8,7 +8,6 @@ const Products = () => {
   const [allProduct, setAllProduct] = useState([]);
 
   const fetchAllProduct = async () => {
-    // console.log("Hello");
     const responseData = await axios.get(SummaryApi.allProduct.url, {
       headers: {
         "Content-Type": "application/json",
@@ -16,11 +15,8 @@ const Products = () => {
       withCredentials: true,
     });
 
-    // const responseData = await fetch(SummaryApi.allProduct.url);
-    // const allData = await responseData.json();
     setAllProduct(responseData?.data?.data || []);
     console.log(responseData.data, "responseData");
-    // console.log(allData, "responseData");
   };
 
   useEffect(() => {
