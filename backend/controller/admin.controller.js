@@ -123,30 +123,6 @@ const uploadProductController = async (req, res) => {
   }
 };
 
-// Get Product
-
-// const getAllProductController = async (req, res) => {
-//   try {
-//     console.log("Hitting");
-//     const allProduct = await Product.find().sort({ createdAt: -1 });
-
-//     console.log(allProduct, "allProduct");
-
-//     return res.status(201).json({
-//       message: "All Product",
-//       success: true,
-//       error: false,
-//       data: allProduct,
-//     });
-//   } catch (error) {
-//     res.status(400).json({
-//       message: error.message || error,
-//       error: true,
-//       success: false,
-//     });
-//   }
-// };
-
 const getProductController = async (req, res) => {
   try {
     const allProduct = await Product.find({}).sort({ createdAt: -1 });
