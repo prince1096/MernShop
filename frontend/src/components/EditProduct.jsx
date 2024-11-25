@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-import { MdOutlineClose } from "react-icons/md";
-import productCategory from "../helpers/productCategory";
-import { FaCloudUploadAlt } from "react-icons/fa";
-import addImage from "../helpers/addImage";
-import DisplayImage from "./DisplayImage";
-import { MdDelete } from "react-icons/md";
 import axios from "axios";
+import React, { useState } from "react";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import DisplayImage from "./DisplayImage";
+import { MdDelete, MdOutlineClose } from "react-icons/md";
+import addImage from "../helpers/addImage";
+import productCategory from "../helpers/productCategory";
 
-const AddProduct = ({ onClose }) => {
+const EditProduct = ({ onClose }) => {
   const [productData, setProductData] = useState({
     productName: "",
     brandName: "",
@@ -279,4 +278,4 @@ const AddProduct = ({ onClose }) => {
   );
 };
 
-export default AddProduct;
+export default EditProduct;

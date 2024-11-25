@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddProduct from "../components/AddProduct";
 import SummaryApi from "../common";
 import axios from "axios";
+import ProductCard from "../components/ProductCard";
 
 const Products = () => {
   const [openAddProduct, setOpenAddProduct] = useState(false);
@@ -35,17 +36,9 @@ const Products = () => {
         </button>
       </div>
 
-      <div>
+      <div className="flex items-center gap-5 py-4">
         {allProduct?.map((product, index) => {
-          return (
-            <div>
-              <img
-                src={product.productImage[0]}
-                alt="productImage"
-                width={100}
-              />
-            </div>
-          );
+          return <ProductCard data={product} key={index} />;
         })}
       </div>
 
