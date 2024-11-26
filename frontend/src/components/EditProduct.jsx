@@ -8,10 +8,10 @@ import { MdDelete, MdOutlineClose } from "react-icons/md";
 import addImage from "../helpers/addImage";
 import productCategory from "../helpers/productCategory";
 
-const EditProduct = ({ onClose }) => {
+const EditProduct = ({ onClose, data }) => {
   const [productData, setProductData] = useState({
-    productName: "",
-    brandName: "",
+    productName: data?.productName,
+    brandName: data?.brandName,
     category: "",
     productImage: [],
     description: "",
@@ -91,7 +91,7 @@ const EditProduct = ({ onClose }) => {
       bg-white p-4 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden"
       >
         <div className="flex justify-between pb-3 ">
-          <h2 className="font-bold text-lg ">Add Product </h2>
+          <h2 className="font-bold text-lg ">Edit Product </h2>
           <div
             className="w-fit ml-auto text-2xl hover:text-3xl cursor-pointer"
             onClick={onClose}
