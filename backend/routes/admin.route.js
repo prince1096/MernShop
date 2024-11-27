@@ -22,5 +22,6 @@ router.put("/:userId", authToken, updateUserController);
 // upload Product
 router.post("/upload-product", uploadProductController);
 router.get("/get-product", getProductController);
+// router.put("/:")
 
 module.exports = router;

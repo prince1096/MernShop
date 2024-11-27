@@ -142,10 +142,38 @@ const getProductController = async (req, res) => {
   }
 };
 
+// UpdateProductController
+
+const updateProductController = async (req, res) => {
+  try {
+    if (!uploadProductPermission(req.userId)) {
+      throw new Error("Permission Denied");
+    }
+
+    const { _id, ...resBody } = req.body;
+
+    const updatedProduct = await Product.findByIdAndUpdate(_id, resBody);
+
+    res.status(200).json({
+      message: "Product Updated",
+      data: updatedProduct,
+      success: true,
+      error: false,
+    });
+  } catch (error) {
+    res.status(404).json({
+      error: error.message || error,
+      error: true,
+      success: true,
+    });
+  }
+};
+
 module.exports = {
   allUsersController,
   singleUserController,
   updateUserController,
   uploadProductController,
   getProductController,
+  updateProductController,
 };

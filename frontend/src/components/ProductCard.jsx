@@ -15,7 +15,10 @@ const ProductCard = ({ data }) => {
           width={120}
         />
         <h1>{data?.productName}</h1>
-        <div className="w-fit ml-auto p-2 bg-green-100 cursor-pointer hover:bg-green-600 rounded-full hover:text-white">
+        <div
+          className="w-fit ml-auto p-2 bg-green-100 cursor-pointer hover:bg-green-600 rounded-full hover:text-white"
+          onClick={() => setEditProduct(true)}
+        >
           <MdModeEditOutline />
         </div>
 
