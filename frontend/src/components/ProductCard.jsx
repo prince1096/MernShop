@@ -3,7 +3,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import EditProduct from "./EditProduct";
 
 const ProductCard = ({ data }) => {
-  const [editProductData, setEditProductData] = useState(false);
+  const [editProduct, setEditProduct] = useState(false);
 
   return (
     <>
@@ -19,7 +19,9 @@ const ProductCard = ({ data }) => {
           <MdModeEditOutline />
         </div>
 
-        <EditProduct />
+        {editProduct && (
+          <EditProduct data={data} onClose={() => setEditProduct(false)} />
+        )}
       </div>
     </>
   );

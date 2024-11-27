@@ -12,11 +12,11 @@ const EditProduct = ({ onClose, data }) => {
   const [productData, setProductData] = useState({
     productName: data?.productName,
     brandName: data?.brandName,
-    category: "",
-    productImage: [],
-    description: "",
-    price: "",
-    sellingPrice: "",
+    category: data?.category,
+    productImage: [...data?.productImage],
+    description: data?.description,
+    price: data?.price,
+    sellingPrice: data?.sellingPrice,
   });
 
   const [activeImage, setActiveImage] = useState("");
