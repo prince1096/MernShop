@@ -15,8 +15,6 @@ const LoginPage = () => {
 
   const generalContext = useContext(Context);
 
-  // console.log("general", generalContext);
-
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 

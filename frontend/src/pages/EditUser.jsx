@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import loginIcons from "../assest/assest/loginGif.gif";
-// import { FaEye } from "react-icons/fa";
-// import { FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaRegImage } from "react-icons/fa6";
 import imageTobase64 from "../helpers/imageTobase64";
 import axios from "axios";
-// import SummaryApi from "../common";
 import { toast } from "react-toastify";
 
 const EditUser = () => {
   const { userId } = useParams();
-  // console.log("userId", userId);
   const [userData, setUserData] = useState({});
   const navigate = useNavigate();
 
@@ -39,14 +35,11 @@ const EditUser = () => {
     e.preventDefault();
     const file = e.target.files[0];
     const imagePic = await imageTobase64(file);
-    // console.log(imagePic, "imagePic");
 
     setUserData((prev) => {
       return { ...prev, profilePic: imagePic };
     });
   };
-
-  // const handleOnChange = async () => {};
 
   const handleOnChange = async (e) => {
     const { name, value } = e.target;
@@ -78,8 +71,6 @@ const EditUser = () => {
   useEffect(() => {
     fetchUserData();
   }, []);
-
-  // console.log("userData", userData);
 
   return (
     <>
@@ -137,7 +128,6 @@ const EditUser = () => {
                     placeholder="enter email"
                     id="email"
                     className="w-full h-full outline-none p-0.5 bg-slate-100"
-                    // onChange={handleOnChange}
                     name="email"
                     value={userData.email}
                   />
@@ -170,7 +160,6 @@ const EditUser = () => {
 
                 <Link
                   to="/admin-panel/all-users"
-                  // className="hover:underline hover:font-semibold01296"
                   className="bg-red-400 hover:bg-red-600 mx-auto block text-white rounded-full px-2 py-1  w-full max-w-[120px] mt-4 hover:scale-110 transition-all font-semibold text-center"
                 >
                   Cancel

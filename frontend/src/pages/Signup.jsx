@@ -20,7 +20,6 @@ const Signup = () => {
     profilePic: "",
   });
 
-  // console.log(signUpData);
   // i am getting a problem high mb pic is not uploaded
 
   const navigate = useNavigate();
@@ -50,15 +49,6 @@ const Signup = () => {
           toast.error(response.data.message);
         }
 
-        // // set form empty
-        // setSignUpData({
-        //   name: "",
-        //   email: "",
-        //   password: "",
-        //   confirmPassword: "",
-        //   profilePic: "",
-        // });
-
         // or redirect to login
       } else {
         console.log("Please check password and confirm password");
@@ -72,7 +62,6 @@ const Signup = () => {
     e.preventDefault();
     const file = e.target.files[0];
     const imagePic = await imageTobase64(file);
-    // console.log(imagePic, "imagePic");
 
     setSignUpData((prev) => {
       return { ...prev, profilePic: imagePic };
