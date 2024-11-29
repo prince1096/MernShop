@@ -8,7 +8,7 @@ import { MdDelete, MdOutlineClose } from "react-icons/md";
 import addImage from "../helpers/addImage";
 import productCategory from "../helpers/productCategory";
 
-const EditProduct = ({ onClose, data }) => {
+const EditProduct = ({ onClose, data, fetchAllProduct }) => {
   const [productData, setProductData] = useState({
     ...data,
     productName: data?.productName,
