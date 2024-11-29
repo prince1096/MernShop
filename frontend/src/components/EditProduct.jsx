@@ -61,29 +61,16 @@ const EditProduct = ({ onClose, data }) => {
   const submitHandler = async (e) => {
     console.log("Heeloo");
     e.preventDefault();
-    // const responseData = await axios.put(
-    //   SummaryApi.updateProduct.url,
-    //   productData,
-    //   {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     withCredentials: true,
-    //   }
-    // );
-
-    const dataResponse = await fetch(SummaryApi.updateProduct.url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(productData), // Serialize the data into JSON format
-      credentials: "include", // Equivalent to axios's `withCredentials: true`
-    });
-
-    // console.log(responseData.data);
-
-    const responseData = await dataResponse.json();
+    const responseData = await axios.put(
+      SummaryApi.updateProduct.url,
+      productData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
 
     console.log(responseData, "responseData");
 

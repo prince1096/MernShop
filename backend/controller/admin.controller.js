@@ -145,7 +145,6 @@ const getProductController = async (req, res) => {
 // UpdateProductController
 
 const updateProductController = async (req, res) => {
-  console.log("Hit");
   try {
     if (!uploadProductPermission(req.userId)) {
       throw new Error("Permission Denied");
