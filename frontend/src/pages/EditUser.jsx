@@ -53,7 +53,7 @@ const EditUser = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/v1/admin/single-user/${userId}`,
+        `http://localhost:8080/api/v1/admin/user/${userId}`,
         userData
       );
       if (response.data.success) {

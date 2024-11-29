@@ -145,6 +145,7 @@ const getProductController = async (req, res) => {
 // UpdateProductController
 
 const updateProductController = async (req, res) => {
+  console.log("Hit");
   try {
     if (!uploadProductPermission(req.userId)) {
       throw new Error("Permission Denied");
@@ -152,7 +153,9 @@ const updateProductController = async (req, res) => {
 
     const { _id, ...resBody } = req.body;
 
-    const updatedProduct = await Product.findByIdAndUpdate(_id, resBody);
+    const updatedProduct = await Product.findByIdAndUpdate(_id, resBody, {
+      new: true,
+    });
 
     res.status(200).json({
       message: "Product Updated",

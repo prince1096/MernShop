@@ -10,6 +10,7 @@ import productCategory from "../helpers/productCategory";
 
 const EditProduct = ({ onClose, data }) => {
   const [productData, setProductData] = useState({
+    ...data,
     productName: data?.productName,
     brandName: data?.brandName,
     category: data?.category,
@@ -58,19 +59,33 @@ const EditProduct = ({ onClose, data }) => {
   };
 
   const submitHandler = async (e) => {
+    console.log("Heeloo");
     e.preventDefault();
-    const responseData = await axios.post(
-      SummaryApi.uploadProduct.url,
-      productData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      }
-    );
+    // const responseData = await axios.put(
+    //   SummaryApi.updateProduct.url,
+    //   productData,
+    //   {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     withCredentials: true,
+    //   }
+    // );
 
-    console.log(responseData.data);
+    const dataResponse = await fetch(SummaryApi.updateProduct.url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productData), // Serialize the data into JSON format
+      credentials: "include", // Equivalent to axios's `withCredentials: true`
+    });
+
+    // console.log(responseData.data);
+
+    const responseData = await dataResponse.json();
+
+    console.log(responseData, "responseData");
 
     if (responseData.data.success) {
       toast.success(responseData.data.message);
@@ -166,13 +181,13 @@ const EditProduct = ({ onClose, data }) => {
             <div className="p-2 bg-slate-100 border rounded h-48 w-full flex justify-center items-center cursor-pointer">
               <div className="text-slate-500 flex justify-center items-center flex-col gap-2">
                 <FaCloudUploadAlt className="text-3xl" />
-                <p className="text-sm">Upload Product Image</p>
+                <p className="text-sm">Update Product Image</p>
                 <input
                   type="file"
                   id="uploadImageInput"
                   className="hidden"
                   onChange={addImageHandler}
-                  required
+                  //   required
                 />
               </div>
             </div>
@@ -261,7 +276,7 @@ const EditProduct = ({ onClose, data }) => {
           />
 
           <button className="px-2 py-2 font-semibold bg-gray-500 text-white mb-10 hover:bg-gray-700">
-            Add Product
+            Update Product
           </button>
         </form>
       </div>
