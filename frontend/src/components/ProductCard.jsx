@@ -6,9 +6,16 @@ import displayINRCurrency from "../helpers/displayCurrency";
 const ProductCard = ({ data, fetchAllProduct }) => {
   const [editProduct, setEditProduct] = useState(false);
 
+  const shortName = (names) => {
+    if (names.length <= 15) {
+      return names; // No shortening needed
+    }
+    return names.slice(0, 15) + "...";
+  };
+
   return (
     <>
-      <div className="bg-white p-4 rounded">
+      <div className="bg-white p-4 rounded h-[280px] ">
         <div className="w-40 ">
           <img
             src={data?.productImage[0]}
@@ -17,7 +24,7 @@ const ProductCard = ({ data, fetchAllProduct }) => {
             width={120}
             className="w-fit mx-auto"
           />
-          <h1>{data?.productName}</h1>
+          <h1>{shortName(data?.productName)}</h1>
 
           <div>
             <p className="font-semibold">
