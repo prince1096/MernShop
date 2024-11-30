@@ -50,7 +50,10 @@ const Products = () => {
 
       {/* Upload product component */}
       {openAddProduct && (
-        <AddProduct onClose={() => setOpenAddProduct(false)} />
+        <AddProduct
+          onClose={() => setOpenAddProduct(false)}
+          fetchAllProduct={fetchAllProduct}
+        />
       )}
     </div>
   );

@@ -9,7 +9,7 @@ import axios from "axios";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
 
-const AddProduct = ({ onClose }) => {
+const AddProduct = ({ onClose, fetchAllProduct }) => {
   const [productData, setProductData] = useState({
     productName: "",
     brandName: "",
@@ -76,6 +76,7 @@ const AddProduct = ({ onClose }) => {
     if (responseData.data.success) {
       toast.success(responseData.data.message);
       onClose();
+      fetchAllProduct();
     }
     if (responseData.data.error) {
       toast.error(responseData.data.error);

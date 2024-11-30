@@ -77,6 +77,7 @@ const EditProduct = ({ onClose, data, fetchAllProduct }) => {
     if (responseData.data.success) {
       toast.success(responseData.data.message);
       onClose();
+      fetchAllProduct();
     }
     if (responseData.data.error) {
       toast.error(responseData.data.error);
