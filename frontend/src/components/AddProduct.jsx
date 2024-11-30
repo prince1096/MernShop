@@ -71,7 +71,7 @@ const AddProduct = ({ onClose, fetchAllProduct }) => {
       }
     );
 
-    console.log(responseData.data);
+    // console.log(responseData.data);
 
     if (responseData.data.success) {
       toast.success(responseData.data.message);
