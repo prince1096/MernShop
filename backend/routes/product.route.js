@@ -1,4 +1,7 @@
 const express = require("express");
+const {
+  getCategoryProductController,
+} = require("../controller/product.Controller");
 
 const router = express.Router();
 
@@ -9,3 +12,7 @@ router.get("/", (req, res) => {
     message: "Product Route",
   });
 });
+
+router.get("/get-categoryProduct", getCategoryProductController);
+
+module.exports = router;

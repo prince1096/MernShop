@@ -5,7 +5,6 @@ const {
   updateUserController,
   uploadProductController,
   getProductController,
-  checkController,
   updateProductController,
 } = require("../controller/admin.controller");
 const authToken = require("../middleware/authToken");

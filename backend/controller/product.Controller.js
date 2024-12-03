@@ -13,3 +13,5 @@ const getCategoryProductController = async (req, res) => {
     });
   }
 };
+
+module.exports = { getCategoryProductController };
