@@ -7,10 +7,11 @@ const getCategoryProductController = async (req, res) => {
     const productByCategory = [];
 
     for (const category of productCategory) {
-      const product = await Product.findOne({ category });
+      const product = await Product.find({ category });
 
       if (product) {
         productByCategory.push(product);
+        // productByCategory = [...productByCategory, product];
       }
     }
 
