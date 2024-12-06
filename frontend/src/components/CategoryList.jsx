@@ -10,9 +10,10 @@ const CategoryList = () => {
     setLoading(true);
     const responseData = await axios.get(SummaryApi.getProductByCategory.url);
 
-    const allProduct = responseData.data.data.flat();
+    // const allProduct = responseData.data.data.flat();
 
-    setCategoryProduct(allProduct);
+    setCategoryProduct(responseData.data.data);
+    console.log(responseData.data.data);
     // console.log(allProduct);
     setLoading(false);
   };
@@ -25,19 +26,21 @@ const CategoryList = () => {
 
   return (
     <div className="container mx-auto p-4 ">
-      {categoryProduct.map((product, index) => {
-        return (
-          <div>
-            <div className="w-20 h-20 rounded-full overflow-hidden">
-              <img
-                src={product?.productImage[0]}
-                alt={product?.category}
-                className="h-full object-fill"
-              />
+      <div className="flex items-center">
+        {categoryProduct.map((product, index) => {
+          return (
+            <div className="p-2">
+              <div className="w-20 h-20 rounded-full overflow-hidden">
+                <img
+                  src={product?.productImage[0]}
+                  alt={product?.category}
+                  className="h-full object-fill"
+                />
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };
