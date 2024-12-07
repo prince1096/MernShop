@@ -10,19 +10,14 @@ const CategoryList = () => {
     setLoading(true);
     const responseData = await axios.get(SummaryApi.getProductByCategory.url);
 
-    // const allProduct = responseData.data.data.flat();
-
     setCategoryProduct(responseData.data.data);
     console.log(responseData.data.data);
-    // console.log(allProduct);
     setLoading(false);
   };
 
   useEffect(() => {
     fetchCategoryProduct();
   }, []);
-
-  //   console.log(categoryProduct);
 
   return (
     <div className="container mx-auto p-4 ">
