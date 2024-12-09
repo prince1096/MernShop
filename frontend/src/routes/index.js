@@ -7,6 +7,7 @@ import AdminPanel from "../pages/AdminPanel";
 import AllUsers from "../pages/AllUsers";
 import Products from "../pages/Products";
 import EditUser from "../pages/EditUser";
+import CategoryItem from "../pages/CategoryItem";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <Signup />,
+      },
+      {
+        path: "product-category/:categoryName",
+        element: <CategoryItem />,
       },
       {
         path: "admin-panel",
