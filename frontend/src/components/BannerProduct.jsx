@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
 
@@ -53,9 +53,19 @@ const BannerProduct = () => {
     });
   };
 
+  // Sliding Images
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextImage();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="container mx-auto  px-4 rounded">
-      <div className="h-72 w-full bg-slate-200 relative">
+      <div className=" h-60 md:h-72 w-full bg-slate-200 relative">
         <div className="absolute z-10 h-full w-full flex items-center ">
           <div className="flex  w-full text-3xl justify-between">
             <button
@@ -72,11 +82,28 @@ const BannerProduct = () => {
             </button>
           </div>
         </div>
-        <div className="flex h-full w-full ">
+        {/* desktop and tablet version */}
+        <div className=" hidden md:flex h-full w-full overflow-hidden ">
           {desktopImages?.map((imageURL, index) => {
             return (
               <div
-                className="w-full h-full min-w-full min-h-full "
+                className="w-full h-full min-w-full min-h-full transition-all "
+                key={imageURL}
+                style={{ transform: `translateX(-${currentImage * 100}%)` }}
+              >
+                <img src={imageURL} alt="image1" className="w-full h-full" />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Mobile Version */}
+
+        <div className="flex h-full w-full overflow-hidden md:hidden ">
+          {mobileImages?.map((imageURL, index) => {
+            return (
+              <div
+                className="w-full h-full min-w-full min-h-full transition-all "
                 key={imageURL}
                 style={{ transform: `translateX(-${currentImage * 100}%)` }}
               >
