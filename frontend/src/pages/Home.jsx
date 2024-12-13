@@ -1,6 +1,7 @@
 import React from "react";
 import CategoryList from "../components/CategoryList";
 import BannerProduct from "../components/BannerProduct";
+import HomeCardProduct from "../components/HomeCardProduct";
 
 const HomePage = () => {
   return (
@@ -9,6 +10,7 @@ const HomePage = () => {
       HomePage
       <CategoryList />
       <BannerProduct />
+      <HomeCardProduct category={"airpodes"} />
     </div>
   );
 };
