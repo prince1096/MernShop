@@ -14,6 +14,8 @@ import image4Mobile from "../assest/assest/banner/img4_mobile.jpg";
 import image5Mobile from "../assest/assest/banner/img5_mobile.png";
 
 const BannerProduct = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+
   const desktopImages = [image2, image1, image3, image4, image5];
   const mobileImages = [
     image2Mobile,
@@ -23,16 +25,49 @@ const BannerProduct = () => {
     image5Mobile,
   ];
 
-  const [currentImage, setCurrentImage] = useState(0);
+  // const nextImage = () => {
+  //   setCurrentImage((prev) => {
+  //     if (prev === desktopImages.length - 1) {
+  //       return 0;
+  //     }
+  //     return prev + 1;
+  //   });
+  // };
+
+  const nextImage = () => {
+    setCurrentImage((prev) => (prev + 1) % desktopImages.length);
+  };
+
+  // const prevImage = () => {
+  //   setCurrentImage((prev) => {
+  //     if (prev === 0) {
+  //       return desktopImages.length - 1;
+  //     }
+  //     return prev - 1;
+  //   });
+  // };
+
+  const prevImage = () => {
+    setCurrentImage((prev) => {
+      return (prev - 1 + desktopImages.length) % desktopImages.length;
+    });
+  };
+
   return (
     <div className="container mx-auto  px-4 rounded">
       <div className="h-72 w-full bg-slate-200 relative">
         <div className="absolute z-10 h-full w-full flex items-center ">
-          <div className="flex w-full text-3xl justify-between">
-            <button>
+          <div className="flex  w-full text-3xl justify-between">
+            <button
+              className="bg-white shadow-md rounded-full p-1"
+              onClick={prevImage}
+            >
               <FaAngleLeft />
             </button>
-            <button>
+            <button
+              className="bg-white shadow-md rounded-full p-1"
+              onClick={nextImage}
+            >
               <FaAngleRight />
             </button>
           </div>
