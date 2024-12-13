@@ -4,12 +4,7 @@ import { useParams } from "react-router-dom";
 const CategoryItem = () => {
   const params = useParams();
 
-  return (
-    <div>
-      CategoryItem
-      {params.categoryName}
-    </div>
-  );
+  return <div>{params.categoryName}</div>;
 };
 
 export default CategoryItem;

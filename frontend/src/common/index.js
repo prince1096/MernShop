@@ -38,9 +38,14 @@ const SummaryApi = {
     method: "put",
   },
 
-  getProductByCategory: {
+  getCategoryOfProduct: {
     url: `${backendDomain}/api/v1/product/get-categoryProduct`,
     method: "get",
+  },
+
+  getProductByCategory: {
+    url: `${backendDomain}/api/v1/product/get-ProductByCategory`,
+    method: "post",
   },
 };
 

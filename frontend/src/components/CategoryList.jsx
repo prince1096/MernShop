@@ -11,7 +11,7 @@ const CategoryList = () => {
 
   const fetchCategoryProduct = async () => {
     setLoading(true);
-    const responseData = await axios.get(SummaryApi.getProductByCategory.url);
+    const responseData = await axios.get(SummaryApi.getCategoryOfProduct.url);
 
     setCategoryProduct(responseData.data.data);
     console.log(responseData.data.data);

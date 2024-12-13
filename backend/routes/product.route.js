@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   getProductCategoryController,
+  getCategoryWistProduct,
 } = require("../controller/product.Controller");
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/get-categoryProduct", getProductCategoryController);
+router.post("/get-ProductByCategory", getCategoryWistProduct);
 
 module.exports = router;

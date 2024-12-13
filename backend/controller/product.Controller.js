@@ -33,6 +33,16 @@ const getProductCategoryController = async (req, res) => {
 // get product on basis of category
 
 const getCategoryWistProduct = async (req, res) => {
+  const category = req?.body;
+
+  const product = await Product.find({ category });
+
+  res.status(200).json({
+    message: "Product",
+    success: true,
+    error: false,
+    data: product,
+  });
   try {
   } catch (error) {
     res.status(404).json({
@@ -43,4 +53,4 @@ const getCategoryWistProduct = async (req, res) => {
   }
 };
 
-module.exports = { getProductCategoryController };
+module.exports = { getProductCategoryController, getCategoryWistProduct };
