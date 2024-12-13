@@ -1,6 +1,6 @@
 const Product = require("../models/product.Model");
 
-const getCategoryProductController = async (req, res) => {
+const getProductCategoryController = async (req, res) => {
   try {
     const productCategory = await Product.distinct("category");
 
@@ -30,4 +30,17 @@ const getCategoryProductController = async (req, res) => {
   }
 };
 
-module.exports = { getCategoryProductController };
+// get product on basis of category
+
+const getCategoryWistProduct = async (req, res) => {
+  try {
+  } catch (error) {
+    res.status(404).json({
+      message: error.message || error,
+      error: true,
+      success: false,
+    });
+  }
+};
+
+module.exports = { getProductCategoryController };

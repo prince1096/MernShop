@@ -1,6 +1,6 @@
 const express = require("express");
 const {
-  getCategoryProductController,
+  getProductCategoryController,
 } = require("../controller/product.Controller");
 
 const router = express.Router();
@@ -13,6 +13,6 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/get-categoryProduct", getCategoryProductController);
+router.get("/get-categoryProduct", getProductCategoryController);
 
 module.exports = router;
