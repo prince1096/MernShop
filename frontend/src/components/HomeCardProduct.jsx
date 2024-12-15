@@ -6,9 +6,9 @@ const HomeCardProduct = ({ category }) => {
   const loadingList = new Array(13).fill(null);
 
   return (
-    <div>
+    <div className="container mx-auto px-4 my-6">
       HomeCardProduct
-      <div className="w-full max-w-[300px]"></div>
+      <div className="w-full max-w-[300px]">Product</div>
     </div>
   );
 };
