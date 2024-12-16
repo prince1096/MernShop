@@ -10,7 +10,7 @@ const HomePage = () => {
       HomePage
       <CategoryList />
       <BannerProduct />
-      <HomeCardProduct category={"airpodes"} />
+      <HomeCardProduct category={"airpodes"} heading={"Top's Airpodes"} />
     </div>
   );
 };
