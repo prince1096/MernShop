@@ -33,7 +33,9 @@ const getProductCategoryController = async (req, res) => {
 // get product on basis of category
 
 const getCategoryWistProduct = async (req, res) => {
-  const category = req?.body;
+  const objCategory = req?.body;
+  const category = objCategory?.category;
+  // console.log(category, typeof category);
 
   const product = await Product.find({ category });
 

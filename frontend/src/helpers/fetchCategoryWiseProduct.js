@@ -2,6 +2,7 @@ import axios from "axios";
 import SummaryApi from "../common";
 
 const fetchCategoryWiseProduct = async (category) => {
+  console.log(category, typeof category);
   try {
     const response = await axios.post(
       SummaryApi.getProductByCategory.url,
