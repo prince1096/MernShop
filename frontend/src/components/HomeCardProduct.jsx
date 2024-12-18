@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import fetchCategoryWiseProduct from "../helpers/fetchCategoryWiseProduct";
 import displayINRCurrrency from "../helpers/displayCurrency";
 import { FaAngleRight } from "react-icons/fa6";
@@ -10,12 +10,23 @@ const HomeCardProduct = ({ category, heading }) => {
   const loadingList = new Array(13).fill(null);
   // console.log(category, typeof category);
 
+  const [scroll, setScroll] = useState(0);
+  const scrollElement = useRef();
+
   const fetchData = async () => {
     setLoading(true);
     const categoryProduct = await fetchCategoryWiseProduct(category);
     setLoading(false);
 
     setData(categoryProduct?.data);
+  };
+
+  const scrollRight = () => {
+    scrollElement.current.scrollLeft += 300;
+  };
+
+  const scrollLeft = () => {
+    scrollElement.current.scrollLeft -= 300;
   };
 
   useEffect(() => {
@@ -25,16 +36,19 @@ const HomeCardProduct = ({ category, heading }) => {
   return (
     <div className="container mx-auto px-4 my-6 relative">
       <h2 className="text-2xl font-semibold py-2 ">{heading}</h2>
-      <div className="flex items-center gap-4 md:gap-6 overflow-scroll scrollbar-none">
+      <div
+        className="flex items-center gap-4 md:gap-6 overflow-scroll scrollbar-none transition-all"
+        ref={scrollElement}
+      >
         <button
-          // onClick={prevImage}
-          className="bg-white shadow-md rounded-full p-1 ml-4 absolute left-0 z-99"
+          onClick={scrollLeft}
+          className="bg-white hidden md:block text-lg shadow-md rounded-full p-1 ml-4 absolute left-0 z-99"
         >
           <FaAngleLeft />
         </button>
         <button
-          // onClick={prevImage}
-          className="bg-white shadow-md rounded-full p-1 mr-4 absolute right-0 z-99"
+          onClick={scrollRight}
+          className="bg-white hidden md:block text-lg shadow-md rounded-full p-1 mr-4 absolute right-0 z-99"
         >
           <FaAngleRight />
         </button>
@@ -42,7 +56,14 @@ const HomeCardProduct = ({ category, heading }) => {
         {data?.map((product, index) => {
           return (
             <div className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex">
-              <div className="bg-slate-200 h-full p-4 hover:scale-110 transition-all min-w-[120px] md:min-w-[145px]">
+              <div
+                className="bg-slate-200 h-full p-4
+                min-w-[120px] md:min-w-[145px]"
+              >
+                {/* 
+              //  hover:scale-110 transition-all
+              
+              */}
                 <img
                   src={product.productImage[0]}
                   alt="ok"
