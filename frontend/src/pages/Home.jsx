@@ -11,6 +11,9 @@ const HomePage = () => {
       <CategoryList />
       <BannerProduct />
       <HomeCardProduct category={"airpodes"} heading={"Top's Airpodes"} />
+      <HomeCardProduct category={"earphones"} heading={"Top's Airpodes"} />
+      <HomeCardProduct category={"mobiles"} heading={"Top's Airpodes"} />
+      <HomeCardProduct category={"camera"} heading={"Top's Airpodes"} />
     </div>
   );
 };
