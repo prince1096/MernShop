@@ -14,6 +14,7 @@ const HomePage = () => {
       <HomeCardProduct category={"earphones"} heading={"Top's Airpodes"} />
       <HomeCardProduct category={"mobiles"} heading={"Top's Airpodes"} />
       <HomeCardProduct category={"camera"} heading={"Top's Airpodes"} />
+      <HomeCardProduct category={"mouse"} heading={"Top's Airpodes"} />
     </div>
   );
 };
