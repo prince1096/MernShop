@@ -55,7 +55,7 @@ const VerticalCardProduct = ({ category, heading }) => {
 
         {data?.map((product, index) => {
           return (
-            <div className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex">
+            <div className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow">
               <div
                 className="bg-slate-200 h-full p-4
                 min-w-[120px] md:min-w-[145px]"
