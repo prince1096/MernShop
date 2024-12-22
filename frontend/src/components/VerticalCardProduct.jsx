@@ -58,7 +58,7 @@ const VerticalCardProduct = ({ category, heading }) => {
             <div className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] bg-white rounded-sm shadow">
               <div
                 className="bg-slate-200 p-4
-                min-w-[280px] h-32 md:min-w-[145px]"
+                min-w-[280px] h-48 md:min-w-[145px] flex justify-center items-center"
               >
                 {/* 
               //  hover:scale-110 transition-all
@@ -67,7 +67,7 @@ const VerticalCardProduct = ({ category, heading }) => {
                 <img
                   src={product.productImage[0]}
                   alt="ok"
-                  className="object-scale-down h-full"
+                  className="object-scale-down h-full mix-blend-multiply"
                 />
               </div>
               {/* <div className="flex justify-center items-center"> */}
@@ -84,7 +84,7 @@ const VerticalCardProduct = ({ category, heading }) => {
                     {displayINRCurrrency(product?.price)}
                   </p>
                 </div>
-                <button className="bg-black text-white hover:bg-gray-600 px-3 py-0.5 mt-7 rounded-full">
+                <button className="bg-black text-white hover:bg-gray-600 px-3 py-0.5 mt-7 rounded-full w-full">
                   Add to Cart
                 </button>
               </div>
