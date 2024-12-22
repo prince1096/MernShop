@@ -60,7 +60,7 @@ const HomeCardProduct = ({ category, heading }) => {
                 <div className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex">
                   <div
                     className="bg-slate-200 h-full p-4
-                min-w-[120px] md:min-w-[145px]"
+                min-w-[120px] md:min-w-[145px] animate-pulse"
                   >
                     {/* 
               //  hover:scale-110 transition-all
@@ -73,18 +73,18 @@ const HomeCardProduct = ({ category, heading }) => {
                     /> */}
                   </div>
                   {/* <div className="flex justify-center items-center"> */}
-                  <div className="px-4 py-2">
-                    <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black p-1">
+                  <div className="px-4 py-2 bg-slate-200  w-full">
+                    <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black p-1 bg-slate-200 w-full">
                       {/* {product?.productName} */}
                     </h2>
-                    <p className="capitalize text-slate-500 p-1">
+                    <p className="capitalize text-slate-500 p-1 bg-slate-200 w-full">
                       {/* {product?.category} */}
                     </p>
-                    <div className="flex gap-2 justify-between text-sm p-1 ">
-                      <p className="font-medium">
+                    <div className="flex gap-2 justify-between text-sm p-1 bg-slate-200 w-full  ">
+                      <p className="font-medium p-1 bg-slate-200 w-full">
                         {/* {displayINRCurrrency(product?.sellingPrice)} */}
                       </p>
-                      <p className="text-slate-500 line-through">
+                      <p className="text-slate-500 line-through bg-slate-200 w-full">
                         {/* {displayINRCurrrency(product?.price)} */}
                       </p>
                     </div>
