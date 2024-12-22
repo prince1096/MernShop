@@ -64,7 +64,6 @@ const HomeCardProduct = ({ category, heading }) => {
                   >
                     {/* 
               //  hover:scale-110 transition-all
-              
               */}
                     {/* <img
                       src={product.productImage[0]}
