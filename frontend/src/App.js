@@ -42,7 +42,7 @@ function App() {
       >
         <ToastContainer />
         <Header />
-        <main className="min-h-[calc(100vh-120px)]">
+        <main className="min-h-[calc(100vh-120px)] pt-22 md:pt-16">
           <Outlet />
         </main>
       </Context.Provider>
