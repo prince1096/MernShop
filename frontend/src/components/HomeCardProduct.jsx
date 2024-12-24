@@ -58,44 +58,34 @@ const HomeCardProduct = ({ category, heading }) => {
             loadingList?.map((product, index) => {
               return (
                 <div className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex">
+                  {/* Placeholder for Image */}
                   <div
                     className="bg-slate-200 h-full p-4
-                min-w-[120px] md:min-w-[145px] animate-pulse"
-                  >
-                    {/* 
-              //  hover:scale-110 transition-all
-              */}
-                    {/* <img
-                      src={product.productImage[0]}
-                      alt="ok"
-                      className="object-scale-down h-full"
-                    /> */}
-                  </div>
-                  {/* <div className="flex justify-center items-center"> */}
-                  <div className="px-4 py-2 bg-slate-200  w-full">
-                    <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black p-1 bg-slate-200 w-full">
-                      {/* {product?.productName} */}
-                    </h2>
-                    <p className="capitalize text-slate-500 p-1 bg-slate-200 w-full">
-                      {/* {product?.category} */}
-                    </p>
-                    <div className="flex gap-2 justify-between text-sm p-1 bg-slate-200 w-full  ">
-                      <p className="font-medium p-1 bg-slate-200 w-full">
-                        {/* {displayINRCurrrency(product?.sellingPrice)} */}
-                      </p>
-                      <p className="text-slate-500 line-through bg-slate-200 w-full">
-                        {/* {displayINRCurrrency(product?.price)} */}
-                      </p>
+                          min-w-[120px] md:min-w-[145px] animate-pulse"
+                  ></div>
+
+                  {/* Placeholder for Text Content */}
+                  <div className="px-4 py-2 w-full">
+                    {/* Skeleton for Product Name */}
+                    <div className="h-5 rounded bg-slate-300 animate-pulse w-3/4 mb-2"></div>
+
+                    {/* Skeleton for Category */}
+                    <div className="h-4 rounded bg-slate-300 animate-pulse w-1/2 mb-2"></div>
+
+                    {/* Skeleton for Price Section */}
+                    <div className="flex gap-2 justify-between text-sm mb-2">
+                      <div className="h-4 rounded bg-slate-300 animate-pulse w-1/4"></div>
+                      <div className="h-4 rounded bg-slate-300 animate-pulse w-1/4"></div>
                     </div>
-                    {/* <button className="bg-black text-white hover:bg-gray-600 px-3 py-0.5 mt-7 rounded-full">
-                      Add to Cart
-                    </button> */}
+
+                    {/* Placeholder for Button */}
+                    <div className="h-8 rounded-full bg-slate-300 animate-pulse w-1/2 mt-5"></div>
                   </div>
-                  {/* </div> */}
                 </div>
               );
             })
-          : data?.map((product, index) => {
+          : // })
+            data?.map((product, index) => {
               return (
                 <div className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex">
                   <div
