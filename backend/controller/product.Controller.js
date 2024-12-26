@@ -55,4 +55,31 @@ const getCategoryWistProduct = async (req, res) => {
   }
 };
 
-module.exports = { getProductCategoryController, getCategoryWistProduct };
+// getProductDetails
+
+const getProductDetails = async (req, res) => {
+  try {
+    const { productId } = req.body;
+
+    const product = await Product.findById(productId);
+
+    res.status(200).json({
+      message: "product",
+      data: product,
+      error: false,
+      success: true,
+    });
+  } catch (error) {
+    res.status(404).json({
+      message: error?.message || message,
+      error: true,
+      success: false,
+    });
+  }
+};
+
+module.exports = {
+  getProductCategoryController,
+  getCategoryWistProduct,
+  getProductDetails,
+};

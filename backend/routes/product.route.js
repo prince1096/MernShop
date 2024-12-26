@@ -2,6 +2,7 @@ const express = require("express");
 const {
   getProductCategoryController,
   getCategoryWistProduct,
+  getProductDetails,
 } = require("../controller/product.Controller");
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.get("/", (req, res) => {
 
 router.get("/get-categoryProduct", getProductCategoryController);
 router.post("/get-ProductByCategory", getCategoryWistProduct);
+router.post("/product-details", getProductDetails);
 
 module.exports = router;
