@@ -5,6 +5,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 // import addToCart from "../helpers/addToCart";
 import Context from "../context";
+import addToCart from "../helpers/addToCart";
 
 const VerticalCardProduct = ({ category, heading }) => {
   const [data, setData] = useState([]);
@@ -18,7 +19,8 @@ const VerticalCardProduct = ({ category, heading }) => {
 
   const handleAddToCart = async (e, id) => {
     // await addToCart(e, id);
-    fetchUserAddToCart();
+    addToCart(e, id);
+    // fetchUserAddToCart();
   };
 
   const fetchData = async () => {
@@ -89,6 +91,7 @@ const VerticalCardProduct = ({ category, heading }) => {
                     <img
                       src={product.productImage[0]}
                       className="object-scale-down h-full hover:scale-110 transition-all mix-blend-multiply"
+                      alt="productImage"
                     />
                   </div>
                   <div className="p-4 grid gap-3">

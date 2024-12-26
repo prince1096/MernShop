@@ -4,6 +4,7 @@ import displayINRCurrrency from "../helpers/displayCurrency";
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import addToCart from "../helpers/addToCart";
 
 const HomeCardProduct = ({ category, heading }) => {
   const [data, setData] = useState([]);
@@ -114,7 +115,10 @@ const HomeCardProduct = ({ category, heading }) => {
                         {displayINRCurrrency(product?.price)}
                       </p>
                     </div>
-                    <button className="bg-black text-white hover:bg-gray-600 px-3 py-0.5 mt-7 rounded-full">
+                    <button
+                      className="bg-black text-white hover:bg-gray-600 px-3 py-0.5 mt-7 rounded-full"
+                      onClick={(e) => addToCart(e, product?._id)}
+                    >
                       Add to Cart
                     </button>
                   </div>
