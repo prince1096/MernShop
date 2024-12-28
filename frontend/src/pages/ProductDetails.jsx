@@ -14,6 +14,14 @@ const ProductDetails = () => {
     sellingPirce: 0,
   });
 
+  const fetchProduct = async () => {
+    try {
+      // const productData = await
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   console.log(params);
   return <div>ProductDetails</div>;
 };
