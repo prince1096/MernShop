@@ -48,6 +48,7 @@ const ProductDetails = () => {
   }, []);
   return (
     <div className="container mx-auto p-4">
+      {data?.map(() => {})}
       <div className="min-h-[200px]">
         <div>
           <img src="" alt="" />
