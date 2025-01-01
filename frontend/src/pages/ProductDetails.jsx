@@ -17,6 +17,8 @@ const ProductDetails = () => {
     sellingPirce: "",
   });
 
+  const productImageListLoading = new Array(4).fill(null);
+
   const fetchProductDetails = async () => {
     setLoading(true);
     try {
@@ -48,10 +50,23 @@ const ProductDetails = () => {
   }, []);
   return (
     <div className="container mx-auto p-4">
-      {data?.map(() => {})}
       <div className="min-h-[200px]">
         <div>
-          <img src="" alt="" />
+          <div className="h-96">
+            {loading ? (
+              <div className="flex gap-2 lg:flex-col overflow-scroll scrollbar-none h-full">
+                {productImageListLoading.map((el) => {
+                  return <div className="h-20 w-20 bg-sky-200 rounded"> </div>;
+                })}
+              </div>
+            ) : (
+              <div className="flex gap-2 lg:flex-col overflow-scroll scrollbar-none h-full">
+                {data?.productImage.map((el) => {
+                  return <div className="h-20 w-20 bg-sky-200 rounded"> </div>;
+                })}
+              </div>
+            )}
+          </div>
         </div>
         <div></div>
       </div>
