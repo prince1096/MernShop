@@ -62,7 +62,7 @@ const ProductDetails = () => {
             <img
               src={activeImage}
               alt="img"
-              className="h-full w-full object-scale-down mix-blend-multiply"
+              className="h-full w-full object-scale-down mix-blend-multiply cursor-pointer"
             />
           </div>
           <div className="h-full">
@@ -90,8 +90,10 @@ const ProductDetails = () => {
                       <img
                         src={imgURL}
                         alt="images"
-                        className="w-full h-full object-scale-down mix-blend-multiply"
-                      />{" "}
+                        className="w-full h-full object-scale-down mix-blend-multiply cursor-pointer"
+                        onMouseEnter={() => handleMouseEnterProduct(imgURL)}
+                        onClick={() => handleMouseEnterProduct(imgURL)}
+                      />
                     </div>
                   );
                 })}
