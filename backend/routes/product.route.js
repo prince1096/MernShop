@@ -17,6 +17,6 @@ router.get("/", (req, res) => {
 
 router.get("/get-categoryProduct", getProductCategoryController);
 router.post("/get-ProductByCategory", getCategoryWistProduct);
-router.post("/product-details", getProductDetails);
+router.post("/productDetails", getProductDetails);
 
 module.exports = router;
