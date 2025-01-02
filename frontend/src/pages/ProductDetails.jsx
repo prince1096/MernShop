@@ -33,7 +33,7 @@ const ProductDetails = () => {
           },
         }
       );
-
+      console.log(response.data);
       setData(response.data.data);
       setLoading(false);
     } catch (error) {
@@ -42,7 +42,7 @@ const ProductDetails = () => {
     }
   };
 
-  // console.log(params);
+  // console.log(params.id);
   // console.log(data);
 
   useEffect(() => {
@@ -55,14 +55,32 @@ const ProductDetails = () => {
           <div className="h-96">
             {loading ? (
               <div className="flex gap-2 lg:flex-col overflow-scroll scrollbar-none h-full">
-                {productImageListLoading.map((el) => {
-                  return <div className="h-20 w-20 bg-sky-200 rounded"> </div>;
+                {productImageListLoading.map((el, index) => {
+                  return (
+                    <div
+                      className="h-20 w-20 bg-sky-200 rounded"
+                      key={"laoding" + index}
+                    >
+                      {" "}
+                    </div>
+                  );
                 })}
               </div>
             ) : (
               <div className="flex gap-2 lg:flex-col overflow-scroll scrollbar-none h-full">
-                {data?.productImage.map((el) => {
-                  return <div className="h-20 w-20 bg-sky-200 rounded"> </div>;
+                {data?.productImage.map((imgURL) => {
+                  return (
+                    <div
+                      className="h-20 w-20 bg-sky-200 rounded p-1"
+                      key={imgURL}
+                    >
+                      <img
+                        src={imgURL}
+                        alt="images"
+                        className="w-full h-full object-scale-down mix-blend-multiply"
+                      />{" "}
+                    </div>
+                  );
                 })}
               </div>
             )}

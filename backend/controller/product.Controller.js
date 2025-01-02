@@ -60,7 +60,7 @@ const getCategoryWistProduct = async (req, res) => {
 const getProductDetails = async (req, res) => {
   try {
     const { productId } = req.body;
-
+    console.log(productId);
     const product = await Product.findById(productId);
 
     res.status(200).json({
