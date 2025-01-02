@@ -6,6 +6,7 @@ import SummaryApi from "../common";
 const ProductDetails = () => {
   const params = useParams();
   const [loading, setLoading] = useState(false);
+  const [activeImage, setActiveImage] = useState("");
 
   const [data, setData] = useState({
     productName: "",
@@ -33,8 +34,9 @@ const ProductDetails = () => {
           },
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       setData(response.data.data);
+      setActiveImage(response.data.data.productImage[0]);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -45,20 +47,31 @@ const ProductDetails = () => {
   // console.log(params.id);
   // console.log(data);
 
+  const handleMouseEnterProduct = (imageURL) => {
+    setActiveImage(imageURL);
+  };
+
   useEffect(() => {
     fetchProductDetails();
   }, []);
   return (
     <div className="container mx-auto p-4">
-      <div className="min-h-[200px]">
-        <div>
-          <div className="h-96">
+      <div className="min-h-[200px] flex flex-col lg:flex-row ">
+        <div className="h-96 flex  flex-col lg:flex-row-reverse gap-4">
+          <div className=" h-[300px] w-[300px] lg:h-96 lg:w-96 bg-slate-200">
+            <img
+              src={activeImage}
+              alt="img"
+              className="h-full w-full object-scale-down mix-blend-multiply"
+            />
+          </div>
+          <div className="h-full">
             {loading ? (
               <div className="flex gap-2 lg:flex-col overflow-scroll scrollbar-none h-full">
                 {productImageListLoading.map((el, index) => {
                   return (
                     <div
-                      className="h-20 w-20 bg-sky-200 rounded"
+                      className="h-20 w-20 bg-sky-200 rounded animate-pulse"
                       key={"laoding" + index}
                     >
                       {" "}
@@ -86,7 +99,7 @@ const ProductDetails = () => {
             )}
           </div>
         </div>
-        <div></div>
+        <div>Product Details</div>
       </div>
     </div>
   );
