@@ -4,6 +4,7 @@ import axios from "axios";
 import SummaryApi from "../common";
 import { FaStar } from "react-icons/fa";
 import { FaStarHalf } from "react-icons/fa";
+import displayINRCurrency from "../helpers/displayCurrency";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -118,6 +119,28 @@ const ProductDetails = () => {
             <FaStar />
             <FaStar />
             <FaStarHalf />
+          </div>
+
+          <div className="flex items-center gap-2 text-2xl lg:text-3xl font-medium my-1">
+            <p className="text-black">
+              {displayINRCurrency(data.sellingPirce)}
+            </p>
+            <p className="text-slate-400 line-through">
+              {displayINRCurrency(data.price)}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3 my-2">
+            <button className="border-2 border-black  rounded px-3 py-1 min-w-[120px] text-black font-medium hover:bg-black hover:text-white">
+              Buy
+            </button>
+            <button className="border-2 border-black  rounded px-3 py-1 min-w-[120px] text-white bg-black font-medium hover:bg-white hover:text-black">
+              Add To Cart
+            </button>
+          </div>
+
+          <div>
+            <p className="">Description</p>
           </div>
         </div>
       </div>
