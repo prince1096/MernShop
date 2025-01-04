@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import SummaryApi from "../common";
+import { FaStar } from "react-icons/fa";
+import { FaStarHalf } from "react-icons/fa";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -101,7 +103,23 @@ const ProductDetails = () => {
             )}
           </div>
         </div>
-        <div>Product Details</div>
+        <div className="flex flex-col gap-1">
+          <p className="bg-gray-200 text-gray-800 px-2 rounded-full  inline-block w-fit">
+            {data?.brandName}
+          </p>
+          <h2 className="text-2xl lg:text-2xl font-medium">
+            {data?.productName}
+          </h2>
+          <p className="capitalize text-slate-400">{data?.category}</p>
+
+          <div className="text-black flex items-center gap-1">
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStarHalf />
+          </div>
+        </div>
       </div>
     </div>
   );
