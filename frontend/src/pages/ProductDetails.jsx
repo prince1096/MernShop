@@ -123,10 +123,10 @@ const ProductDetails = () => {
 
           <div className="flex items-center gap-2 text-2xl lg:text-3xl font-medium my-1">
             <p className="text-black">
-              {displayINRCurrency(data.sellingPirce)}
+              {displayINRCurrency(data?.sellingPirce)}
             </p>
             <p className="text-slate-400 line-through">
-              {displayINRCurrency(data.price)}
+              {displayINRCurrency(data?.price)}
             </p>
           </div>
 
@@ -140,7 +140,7 @@ const ProductDetails = () => {
           </div>
 
           <div>
-            <p className="">Description</p>
+            <p className="">Description = {data?.description}</p>
           </div>
         </div>
       </div>
