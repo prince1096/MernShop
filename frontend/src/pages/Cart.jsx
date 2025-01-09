@@ -7,7 +7,7 @@ const Cart = () => {
     fetchCartData();
   }, []);
 
-  return <div>Cart</div>;
+  return <div className="">Cart</div>;
 };
 
 export default Cart;
