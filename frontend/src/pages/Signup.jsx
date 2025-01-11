@@ -42,14 +42,12 @@ const Signup = () => {
 
         if (response.data.success) {
           toast.success(response.data.message);
-          navigate("/login"); // redirect to login
+          navigate("/login");
         }
 
         if (response.data.error) {
           toast.error(response.data.message);
         }
-
-        // or redirect to login
       } else {
         console.log("Please check password and confirm password");
       }
