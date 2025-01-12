@@ -19,8 +19,6 @@ const AllUsers = () => {
       withCredentials: true,
     });
 
-    // console.log(responseData.data);
-
     if (responseData?.data?.success) {
       setAllUsers(responseData.data.data);
     }
