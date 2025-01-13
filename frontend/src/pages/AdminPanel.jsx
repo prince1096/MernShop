@@ -6,7 +6,6 @@ import { Link, Outlet } from "react-router-dom";
 const AdminPanel = () => {
   const user = useSelector((state) => state?.user?.user);
   //   const dispatch = useDispatch();
-  //   const [adminDisplay, setAdminDisplay] = useState(false);
 
   return (
     <div className="min-h-[calc(100vh-64px)] md:flex hidden ">
