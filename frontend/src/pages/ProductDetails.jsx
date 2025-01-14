@@ -47,9 +47,6 @@ const ProductDetails = () => {
     }
   };
 
-  // console.log(params.id);
-  // console.log(data);
-
   const handleMouseEnterProduct = (imageURL) => {
     setActiveImage(imageURL);
   };
